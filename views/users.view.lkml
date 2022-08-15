@@ -1,9 +1,10 @@
 view: users {
   sql_table_name: `looker-private-demo.thelook.users`
     ;;
-  drill_fields: [id]
+  drill_fields: [ created_week, count]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
