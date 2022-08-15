@@ -21,10 +21,16 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # }
 explore: order_items {
   label: "Order Items"
+
   join: users {
     relationship: many_to_one
     sql_on: ${users.id} = ${order_items.user_id} ;;
   }
+
+ join: orders {
+   relationship: many_to_one
+  sql_on: ${orders.order_id} = ${order_items.order_id} ;;
+ }
 
 
 }

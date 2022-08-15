@@ -86,6 +86,29 @@ view: users {
 
   measure: count {
     type: count
-    drill_fields: [id, last_name, first_name, orders.count, order_items.count]
+    drill_fields: [id, last_name, first_name, orders.count, order_items.count, full_name]
   }
+
+  dimension: days_since_signup {
+    type: number
+    sql: DATE_DIFF(current_date, ${created_date}, day) ;;
+  }
+
+  dimension: is_new_user{
+    description: "users that have signed up in the past 30 days"
+    type: yesno
+    sql: ${days_since_signup} <= 30 ;;
+  }
+
+  measure: new_user_count {
+    type: count
+    filters: [is_new_user: "yes"]
+  }
+
+
+  dimension: full_name{
+    type: string
+    sql: ${first_name} || " " || ${last_name} ;;
+  }
+
 }

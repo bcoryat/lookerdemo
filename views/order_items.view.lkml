@@ -105,7 +105,8 @@ view: order_items {
     sql: ${returned_raw} IS NOT NULL;;
   }
 
-  measure: total_rev {
+  measure: adjusted_total_revenue {
+    description: "total revenue excluding returns"
     type: sum
     sql: ${sale_price} ;;
     filters: [is_returned: "YES"]
