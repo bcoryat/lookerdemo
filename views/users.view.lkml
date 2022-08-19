@@ -102,6 +102,7 @@ view: users {
   }
 
   measure: new_user_count {
+    description: "Count of users that have signed up in the past 30 days"
     type: count
     filters: [is_new_user: "yes"]
   }

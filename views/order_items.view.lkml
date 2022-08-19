@@ -108,7 +108,7 @@ view: order_items {
   measure: adjusted_total_revenue {
     description: "total revenue excluding returns"
     type: sum
-    value_format: "$##.00"
+    value_format_name: "usd_0"
     sql: ${sale_price} ;;
     filters: [is_returned: "YES"]
   }
